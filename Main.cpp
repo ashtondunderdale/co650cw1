@@ -10,6 +10,7 @@ void DisplayOrderInterface();
 
 void AddCustomer();
 void ViewCustomers();
+void SearchCustomers();
 
 void CleanConsole();
 
@@ -42,7 +43,7 @@ void DisplaySalesInterface() {
 
 
 void DisplayCustomerInterface() {
-    std::cout << "Customer Interface\n\n 1. Add Customer\n 2. View Customers \n\n";
+    std::cout << "Customer Interface\n\n 1. Add Customer\n 2. View Customers\n 3. Search Customers \n\n";
 
     std::string customerNameInput;
     getline(std::cin, customerNameInput);
@@ -52,6 +53,9 @@ void DisplayCustomerInterface() {
     }
     else if (customerNameInput == "2") {
         ViewCustomers();
+    }
+    else if (customerNameInput == "3") {
+        SearchCustomers();
     }
 
     CleanConsole(); 
@@ -74,7 +78,7 @@ void AddCustomer() {
     getline(std::cin, customerNameInput);
 
     if (customerNameInput.empty()) {
-        std::cout << "Customer name cannot be empty";
+        std::cout << "Customer name cannot be empty.";
         return;
     }
 
@@ -90,16 +94,33 @@ void ViewCustomers() {
     system("CLS");
 
     if (customers.empty()) {
-        std::cout << "\n\tNo customers to Display";
+        std::cout << "\n\tNo customers to Display.";
         return;
     }
 
     for (auto const& customer : customers) {
-        std::cout << customer.Name;
+        std::cout << "\n" << customer.ID << "\n";
+        std::cout << customer.Name << "\n\n";
     }
 }
 
 
+void SearchCustomers() {
+
+    std::cout << "Enter Customer ID\n";
+
+    std::string customerIDInput;
+    getline(std::cin, customerIDInput);
+
+    for (auto const& customer : customers) {
+        if (customerIDInput == customer.ID) {
+            customer.ReturnCustomerID();
+            std::cout << customer.Name;
+            return;
+        }
+        std::cout << "No customer with that ID has been found.";
+    }
+}
 
 
 void CleanConsole() {

@@ -1,6 +1,7 @@
 #include "Customer.h"
 
 
-std::string Customer::ReturnCustomerID() {
-    return this->ID;
+std::string Customer::ReturnCustomerID() 
+{
+    return ID;
 }

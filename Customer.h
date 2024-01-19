@@ -1,12 +1,15 @@
 #pragma once
 #include <string>
 
+class Customer 
+{
+    public:
+        std::string ID;
+        std::string Name;
+        std::string DeliveryAddress;
+        std::string Contact;
+        bool IsActive;
 
-class Customer {
-public:
-	std::string ID;
-	std::string Name;
-
-
-	std::string ReturnCustomerID();
+        std::string ReturnCustomerID();
 };
+

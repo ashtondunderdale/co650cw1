@@ -1,6 +1,7 @@
 #include "Order.h"
 
 
-std::string Order::ReturnOrderID() {
-	return this->ID; 
+std::string Order::ReturnOrderID() 
+{
+	return ID; 
 }

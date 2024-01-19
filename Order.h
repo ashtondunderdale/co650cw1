@@ -3,9 +3,10 @@
 #include <string>
 
 
-class Order {
-public:
-	std::string ID;
+class Order 
+{
+	public:
+		std::string ID;
 
-	std::string ReturnOrderID(); 
+		std::string ReturnOrderID(); 
 };

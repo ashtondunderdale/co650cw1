@@ -4,6 +4,7 @@
 #include "OrderOperations.h"
 #include "CustomerOperations.h"
 #include "Order.h"
+#include <random>
 
 
 std::list<Order> orders;
@@ -62,6 +63,12 @@ void AddOrder()
     {
         if (customer.ID == selectedCustomerInput) 
         {
+            Order order(
+                GenerateOrderID()
+            );
+
+            customer.customerOrders.push_back(order);
+
             std::cout << "\nAdded Order to '" << customer.Name << "'." << std::endl;
             getchar();
             return;
@@ -73,7 +80,16 @@ void AddOrder()
 
 void ViewOrders()
 {
+    for (auto& customer : customers)
+    {
+        std::cout << customer.Name << std::endl;
 
+        for (auto& order : customer.customerOrders) 
+        {
+            std::cout << order.ID;
+        }
+    }
+    getchar();
 }
 
 void SearchOrders()
@@ -84,4 +100,21 @@ void SearchOrders()
 void CancelOrder()
 {
 
+}
+
+std::string GenerateOrderID() {
+    const std::string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const int sequenceLength = 16;
+
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<int> distribution(0, characters.size() - 1);
+
+    std::string randomSequence;
+
+    for (int i = 0; i < sequenceLength; ++i) {
+        randomSequence += characters[distribution(generator)];
+    }
+
+    return randomSequence;
 }

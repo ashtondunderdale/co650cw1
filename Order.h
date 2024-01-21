@@ -2,6 +2,8 @@
 
 #include <string>
 
+#ifndef ORDER_H
+#define ORDER_H
 
 class Order 
 {
@@ -10,3 +12,5 @@ class Order
 
 		Order(std::string id);
 };
+
+#endif

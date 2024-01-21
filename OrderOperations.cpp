@@ -1,13 +1,11 @@
 #include <iostream>
 #include <list>
+#include <random>
 
 #include "OrderOperations.h"
 #include "CustomerOperations.h"
 #include "Order.h"
-#include <random>
-
-
-std::list<Order> orders;
+#include "Stock.h"
 
 
 void DisplayOrderInterface()
@@ -63,6 +61,21 @@ void AddOrder()
     {
         if (customer.ID == selectedCustomerInput) 
         {
+            while (true) 
+            {
+                for (auto& stock : stockData) 
+                {
+                    std::cout << "\n\n" << stock.ID << std::endl;
+                    std::cout << stock.Name << std::endl;
+                }
+
+                std::cout << "Choose Stock to add to order" << std::endl;
+
+                std::string ;
+            }
+
+
+
             Order order(
                 GenerateOrderID()
             );
@@ -82,7 +95,7 @@ void ViewOrders()
 {
     for (auto& customer : customers)
     {
-        std::cout << customer.Name << std::endl;
+        std::cout << "\n\n" << customer.Name << std::endl;
 
         for (auto& order : customer.customerOrders) 
         {

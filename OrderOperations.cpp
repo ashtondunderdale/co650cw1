@@ -133,11 +133,17 @@ void ViewOrders()
     {
         std::cout << "\n\n" << customer.Name << std::endl;
 
-        for (auto& order : customer.customerOrders) 
+        for (auto& customerOrder : customer.customerOrders) 
         {
-            std::cout << "\n\t" << order.ID;
+            std::cout << "\n\tOrder " << customerOrder.ID << std::endl;
 
-
+            for (auto& stock : customerOrder.OrderStock) 
+            {
+                std::cout << "\t" << "\t" << stock.ID;
+                std::cout << "\t" << stock.Name;
+                std::cout << "\t" << stock.OrderQuantity << std::endl;
+            }
+            std::cout << "\n\n";
         }
     }
     getchar();

@@ -63,18 +63,25 @@ void AddOrder()
         {
             while (true) 
             {
+                int iteration = 1;
+
                 for (auto& stock : stockData) 
                 {
+                    std::cout << "Stock Index | " << iteration << std::endl;
                     std::cout << "\n\n" << stock.ID << std::endl;
                     std::cout << stock.Name << std::endl;
+
+                    iteration++;
                 }
 
-                std::cout << "Choose Stock to add to order" << std::endl;
+                std::cout << "\n\nChoose Stock Index to add to order" << std::endl;
 
-                std::string ;
+                int stockSelectionInput;
+                std::cin >> stockSelectionInput; 
+
+
+                
             }
-
-
 
             Order order(
                 GenerateOrderID()

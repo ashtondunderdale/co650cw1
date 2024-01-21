@@ -7,7 +7,8 @@
 #include "Stock.h"
 #include "Main.h"
 
-std::vector<Stock> stockData = {
+std::vector<Stock> stockData = 
+{
     Stock("lkJj8dIse239Dia3", "Metal Pipe 0.2x5m", 20, 0),
     Stock("k928sSla002dDjaf", "Bolt 12mm", 13, 0),
     Stock("sdf8sdn8sdf9sdf9", "Wooden Plank 2x4", 30, 0),

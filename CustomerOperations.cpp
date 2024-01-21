@@ -5,6 +5,7 @@
 
 #include "CustomerOperations.h"
 #include "Customer.h"
+#include "Main.h"
 
 std::list<Customer> customers;
 
@@ -184,11 +185,4 @@ void AddSampleCustomers()
 
         customers.push_back(customer);
     }
-}
-
-void CleanConsole() 
-{
-    std::cout << "\n\n\tPress Enter to return.";
-    getchar();
-    system("CLS");
 }

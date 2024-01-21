@@ -6,6 +6,7 @@
 #include "CustomerOperations.h"
 #include "Order.h"
 #include "Stock.h"
+#include "Main.h"
 
 
 void DisplayOrderInterface()
@@ -91,7 +92,7 @@ void AddOrder()
                         stockToOrder 
                     );
 
-                    customer.customerOrders.push_back(order);
+                    customer.CustomerOrders.push_back(order);
 
                     getchar();
                     return;
@@ -134,7 +135,7 @@ void ViewOrders()
     {
         std::cout << "\n\n" << customer.Name << std::endl;
 
-        for (auto& customerOrder : customer.customerOrders) 
+        for (auto& customerOrder : customer.CustomerOrders)
         {
             std::cout << "\n\tOrder " << customerOrder.ID << std::endl;
 
@@ -167,7 +168,7 @@ void SearchOrders() {
     {
         if (customerIDInput == customer.ID)
         {
-            for (auto& order : customer.customerOrders) 
+            for (auto& order : customer.CustomerOrders)
             {
                 std::cout << "\n" << order.ID << std::endl;
 
@@ -196,7 +197,7 @@ void CancelOrder()
         if (customer.ID == CustomerIDInput) 
         {
             int iteration = 1;
-            for (auto& order : customer.customerOrders) 
+            for (auto& order : customer.CustomerOrders)
             {
                 std::cout << "\n\n" << iteration << " | " << order.ID << std::endl;
 
@@ -209,7 +210,7 @@ void CancelOrder()
                 iteration++;
             }
 
-            if (customer.customerOrders.empty()) 
+            if (customer.CustomerOrders.empty())
             {
                 std::cout << "\nNo orders to cancel for this customer." << std::endl;
                 return;
@@ -220,8 +221,8 @@ void CancelOrder()
             int orderIndexToCancel;
             std::cin >> orderIndexToCancel;
 
-            std::cout << "\nOrder '" << customer.customerOrders[orderIndexToCancel - 1].ID << "' removed.";
-            customer.customerOrders.erase(customer.customerOrders.begin() + orderIndexToCancel - 1);
+            std::cout << "\nOrder '" << customer.CustomerOrders[orderIndexToCancel - 1].ID << "' removed.";
+            customer.CustomerOrders.erase(customer.CustomerOrders.begin() + orderIndexToCancel - 1);
 
             getchar();
             return;

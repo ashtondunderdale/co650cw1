@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "CustomerOperations.h"
+#include "Main.h"
 
 
 int main()
@@ -34,4 +35,12 @@ void DisplaySalesInterface()
     {
         DisplayInventoryInterface();
     }
+}
+
+
+void CleanConsole() 
+{
+    std::cout << "\n\n\tPress Enter to return.";
+    getchar();
+    system("CLS");
 }

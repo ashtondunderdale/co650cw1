@@ -16,7 +16,7 @@ class Customer
         std::string Contact;
         bool IsActive = true;
 
-        std::vector<Order> customerOrders;
+        std::vector<Order> CustomerOrders;
 
         Customer(std::string id, std::string name, std::string deliveryAddress, std::string contact);
 };

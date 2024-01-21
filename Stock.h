@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #ifndef STOCK_H
 #define STOCK_H

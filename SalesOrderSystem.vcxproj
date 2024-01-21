@@ -139,6 +139,7 @@
     <ClInclude Include="Customer.h" />
     <ClInclude Include="CustomerOperations.h" />
     <ClInclude Include="InventoryOperations.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="OrderOperations.h" />
     <ClInclude Include="Stock.h" />

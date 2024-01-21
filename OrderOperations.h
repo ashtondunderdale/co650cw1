@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+
 #include "Stock.h"
 
 #ifndef ORDER_OPERATIONS_H

@@ -10,9 +10,10 @@
 
 extern std::list<Customer> customers;
 
-void DisplaySalesInterface();
+void DisplaySalesInterface(); // put this in main.h 
 void DisplayCustomerInterface();
 void DisplayOrderInterface();
+void DisplayInventoryInterface();
 
 void AddCustomer();
 void ViewCustomers();

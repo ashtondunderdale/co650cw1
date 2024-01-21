@@ -16,7 +16,7 @@ int main()
 
 void DisplaySalesInterface()
 {
-    std::cout << "Main Sales Interface\n\n 1 |  Customers\n 2 |  Orders  \n\n";
+    std::cout << "Company Sales Interface\n\n 1 |  Customers\n 2 |  Orders\n\n 3 |  Inventory\n\n";
     std::string interfaceInput;
 
     getline(std::cin, interfaceInput);
@@ -29,5 +29,9 @@ void DisplaySalesInterface()
     else if (interfaceInput == "2")
     {
         DisplayOrderInterface();
+    }
+    else if (interfaceInput == "3")
+    {
+        DisplayInventoryInterface();
     }
 }

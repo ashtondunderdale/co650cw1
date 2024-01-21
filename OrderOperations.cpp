@@ -14,6 +14,7 @@ void DisplayOrderInterface()
 
     std::string orderInterfaceInput;
     getline(std::cin, orderInterfaceInput);
+
     if (orderInterfaceInput == "1")
     {
         AddOrder();
@@ -204,7 +205,6 @@ void CancelOrder()
                     std::cout << "\t" << "\t" << stock.ID; 
                     std::cout << "\t" << stock.Name; 
                     std::cout << "\t" << stock.OrderQuantity << std::endl;
-
                 }
                 iteration++;
             }

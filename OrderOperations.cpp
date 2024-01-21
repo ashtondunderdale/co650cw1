@@ -185,7 +185,49 @@ void SearchOrders() {
 
 void CancelOrder()
 {
+    std::cout << "\nEnter the Customer ID for the order to cancel\n";
 
+    std::string CustomerIDInput;
+    getline(std::cin, CustomerIDInput);
+
+    for (auto& customer : customers)
+    {
+        if (customer.ID == CustomerIDInput) 
+        {
+            int iteration = 1;
+            for (auto& order : customer.customerOrders) 
+            {
+                std::cout << "\n\n" << iteration << " | " << order.ID << std::endl;
+
+                for (auto& stock : order.OrderStock) 
+                {
+                    std::cout << "\t" << "\t" << stock.ID; 
+                    std::cout << "\t" << stock.Name; 
+                    std::cout << "\t" << stock.OrderQuantity << std::endl;
+
+                }
+                iteration++;
+            }
+
+            if (customer.customerOrders.empty()) 
+            {
+                std::cout << "\nNo orders to cancel for this customer." << std::endl;
+                return;
+            }
+
+            std::cout << "\nEnter the index of the order to cancel." << std::endl;
+
+            int orderIndexToCancel;
+            std::cin >> orderIndexToCancel;
+
+            std::cout << "\nOrder '" << customer.customerOrders[orderIndexToCancel - 1].ID << "' removed.";
+            customer.customerOrders.erase(customer.customerOrders.begin() + orderIndexToCancel - 1);
+
+            getchar();
+            return;
+        }
+    }
+    std::cout << "\nNo customer with that ID has been found.";
 }
 
 std::string GenerateOrderID() {

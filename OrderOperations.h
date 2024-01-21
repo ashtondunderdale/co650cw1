@@ -6,7 +6,7 @@
 #ifndef ORDER_OPERATIONS_H
 #define ORDER_OPERATIONS_H
 
-extern std::list<Stock> stockData; 
+extern std::vector<Stock> stockData; 
 
 void AddOrder();
 void ViewOrders();

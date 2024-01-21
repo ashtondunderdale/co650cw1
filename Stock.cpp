@@ -1,6 +1,6 @@
 #include "Stock.h"
 #include <string>
-#include <list>
+#include <vector>
 
 Stock::Stock(std::string id, std::string name, int quantity, int orderQuantity)
 {
@@ -10,7 +10,7 @@ Stock::Stock(std::string id, std::string name, int quantity, int orderQuantity)
 	OrderQuantity = orderQuantity;
 }
 
-std::list<Stock> stockData = {
+std::vector<Stock> stockData = {
     Stock("lkJj8dIse239Dia3", "Metal Pipe 0.2x5m", 20, 0),
     Stock("k928sSla002dDjaf", "Bolt 12mm", 13, 0),
     Stock("sdf8sdn8sdf9sdf9", "Wooden Plank 2x4", 30, 0),

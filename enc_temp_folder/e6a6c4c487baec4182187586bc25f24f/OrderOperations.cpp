@@ -83,7 +83,7 @@ void AddOrder()
 
                 if (stockSelectionInput == 0) 
                 {
-                    std::cout << "\nFinished stock order." << std::endl;
+                    std::cout << "Finished stock order." << std::endl;
 
                     Order order(
                         GenerateOrderID(),
@@ -135,9 +135,7 @@ void ViewOrders()
 
         for (auto& order : customer.customerOrders) 
         {
-            std::cout << "\n\t" << order.ID;
-
-
+            std::cout << "\n\n" << order.ID;
         }
     }
     getchar();

@@ -6,32 +6,11 @@
 #include "CustomerOperations.h"
 #include "Customer.h"
 
-
 std::list<Customer> customers;
-
-
-void DisplaySalesInterface() 
-{
-    std::cout << "Main Sales Interface\n\n 1 |  Customers\n 2 |  Orders  \n\n";
-    std::string interfaceInput;
-
-    getline(std::cin, interfaceInput);
-    system("CLS");
-
-    if (interfaceInput == "1") 
-    {
-        DisplayCustomerInterface();
-    }
-    else if (interfaceInput == "2") 
-    {
-        DisplayOrderInterface();
-    }
-}
-
 
 void DisplayCustomerInterface() 
 {
-    std::cout << "Customer Interface\n\n 1. Add New Customer\n 2. View Customers\n 3. Search Customers\n 4. Deactivate Customer \n\n";
+    std::cout << "Customer Interface\n\n 1 |  Add New Customer\n 2 |  View Customers\n 3 |  Search Customers\n 4 |  Deactivate Customer \n\n";
 
     std::string customerInterfaceInput;
     getline(std::cin, customerInterfaceInput);

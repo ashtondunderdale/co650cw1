@@ -149,9 +149,38 @@ void ViewOrders()
     getchar();
 }
 
-void SearchOrders()
-{
+void SearchOrders() {
 
+    if (customers.empty())
+    {
+        std::cout << "\n\tNo customers with orders to Search.";
+        return;
+    }
+
+    std::cout << "\nEnter Customer ID\n";
+
+    std::string customerIDInput;
+    getline(std::cin, customerIDInput);
+
+    for (auto const& customer : customers)
+    {
+        if (customerIDInput == customer.ID)
+        {
+            for (auto& order : customer.customerOrders) 
+            {
+                std::cout << "\n" << order.ID << std::endl;
+
+                for (auto& stock : order.OrderStock) 
+                {
+                    std::cout << "\t" << "\t" << stock.ID;
+                    std::cout << "\t" << stock.Name;
+                    std::cout << "\t" << stock.OrderQuantity << std::endl;
+                }
+            }
+            return;
+        }
+    }
+    std::cout << "\nNo customer with that ID has been found.";
 }
 
 void CancelOrder()

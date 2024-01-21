@@ -1,7 +1,10 @@
 #include "Customer.h"
 
 
-std::string Customer::ReturnCustomerID() 
+Customer::Customer(std::string id, std::string name, std::string deliveryAddress, std::string contact)
 {
-    return ID;
+	ID = id;
+	Name = name;
+	DeliveryAddress = deliveryAddress;
+	Contact = contact;
 }

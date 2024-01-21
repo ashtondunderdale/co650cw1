@@ -8,8 +8,8 @@ class Customer
         std::string Name;
         std::string DeliveryAddress;
         std::string Contact;
-        bool IsActive;
+        bool IsActive = true;
 
-        std::string ReturnCustomerID();
+        Customer(std::string id, std::string name, std::string deliveryAddress, std::string contact);
 };
 

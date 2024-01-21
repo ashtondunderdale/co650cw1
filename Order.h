@@ -8,5 +8,5 @@ class Order
 	public:
 		std::string ID;
 
-		std::string ReturnOrderID(); 
+		Order(std::string id);
 };

@@ -41,12 +41,12 @@ void AddSampleCustomers()
     std::vector<std::string> contacts = { "07929774839", "08172984429", "07839418273" };
 
     for (size_t i = 0; i < names.size(); ++i) {
-        Customer customer;
-        customer.ID = GenerateCustomerID();
-        customer.Name = names[i];
-        customer.DeliveryAddress = addresses[i];
-        customer.Contact = contacts[i];
-        customer.IsActive = true;
+        Customer customer(
+            GenerateCustomerID(),
+            names[i],
+            addresses[i],
+            contacts[i]
+        );
 
         customers.push_back(customer);
     }
@@ -55,7 +55,7 @@ void AddSampleCustomers()
 
 void DisplaySalesInterface() 
 {
-    std::cout << "Main Sales Interface\n\n 1. Customers\n 2. Sales  \n\n";
+    std::cout << "Main Sales Interface\n\n 1 |  Customers\n 2 |  Orders  \n\n";
     std::string interfaceInput;
 
     getline(std::cin, interfaceInput);
@@ -69,7 +69,6 @@ void DisplaySalesInterface()
     {
         DisplayOrderInterface();
     }
-
 }
 
 
@@ -96,7 +95,6 @@ void DisplayCustomerInterface()
     {
         DeactivateCustomer();
     }
-
     CleanConsole(); 
 }
 
@@ -124,12 +122,22 @@ void AddCustomer()
         return;
     }
 
-    Customer customer;
-    customer.ID = GenerateCustomerID();
-    customer.Name = customerNameInput;
- /*   customer.DeliveryAddress = customerNameInput;
-    customer.Contact = customerNameInput;
-    customer.Active = true;*/
+    std::cout << "\nEnter customer Delivery Address\n";
+
+    std::string customerDeliveryAddressInput;
+    getline(std::cin, customerDeliveryAddressInput);
+
+    std::cout << "\nEnter customer Contact\n";
+
+    std::string customerContactInput;
+    getline(std::cin, customerContactInput);
+
+    Customer customer(
+        GenerateCustomerID(),
+        customerNameInput,
+        customerDeliveryAddressInput,
+        customerContactInput
+    );
 
     customers.push_back(customer); 
     std::cout << "\nAdded Customer '" << customerNameInput << "'"; 
@@ -153,12 +161,11 @@ void ViewCustomers()
             IsActiveString = "Active";
         }
 
-        std::cout << "\n" << customer.ID << "\n";
-        std::cout << customer.Name << "\n";
-        std::cout << customer.DeliveryAddress << "\n";
-        std::cout << customer.Contact << "\n";
-        std::cout << IsActiveString << "\n";
-
+        std::cout << "\n" << "ID      |\t" << customer.ID << "\n";
+        std::cout << "NAME    |\t" << customer.Name << "\n";
+        std::cout << "ADDRESS |\t" << customer.DeliveryAddress << "\n";
+        std::cout << "CONTACT |\t" << customer.Contact << "\n";
+        std::cout << "STATUS  |\t" << IsActiveString << "\n";
     }
 }
 
@@ -171,7 +178,7 @@ void SearchCustomers() {
         return;
     }
 
-    std::cout << "Enter Customer ID\n";
+    std::cout << "\nEnter Customer ID\n";
 
     std::string customerIDInput;
     getline(std::cin, customerIDInput);
@@ -214,6 +221,7 @@ void DeactivateCustomer()
             customer.IsActive = false;
 
             std::cout << "\nDeactivated customer: '" << customer.Name << "'";
+            return;
         }
     }
     std::cout << "\nNo customer with that ID has been found.";

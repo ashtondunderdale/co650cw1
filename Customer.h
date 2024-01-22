@@ -10,6 +10,7 @@
 class Customer
 {
     public:
+        static int CustomerCount;
         std::string ID;
         std::string Name;
         std::string DeliveryAddress;

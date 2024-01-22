@@ -11,7 +11,7 @@
 
 void DisplayOrderInterface()
 {
-    std::cout << "Order Interface\n\n 1 |  Add Order\n 2 |  View Orders\n 3 |  Search Orders\n 4 |  Cancel Order\n\n";
+    std::cout << "Order Management Hub\n\n\n 1 |  Create New Order\n 2 |  View Existing Orders\n 3 |  Search Order Database\n 4 |  Cancel Pending Order\n\n";
 
     std::string orderInterfaceInput;
     getline(std::cin, orderInterfaceInput);
@@ -63,6 +63,14 @@ void AddOrder()
     {
         if (customer.ID == selectedCustomerInput) 
         {
+
+            if (!customer.IsActive) 
+            {
+                std::cout << "\nThis customer is not currently active. Activate this customer to create an order." << std::endl;
+                getchar();
+                return;
+            }
+
             std::vector<Stock> stockToOrder; 
 
             while (true) 

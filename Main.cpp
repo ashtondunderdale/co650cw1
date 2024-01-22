@@ -4,37 +4,43 @@
 #include "Main.h"
 
 
-int main()
-{
-    AddSampleCustomers(); // For testing, to remove.
+class SalesInterface {
 
-    while (true)
-    {
-        DisplaySalesInterface();
-    }
-}
+    public:
+        void Run() {
+            AddSampleCustomers(); // For testing, to remove.
+
+            while (true) {
+                DisplaySalesInterface();
+            }
+        }
+
+    private:
+        void DisplaySalesInterface() {
+std::cout << "Welcome to the Enterprise Sales Management System\n\n\n 1 |  Customer Relations & Engagement\n 2 |  Order Fulfillment & Processing\n\n 3 |  Inventory Management\n\n";
+            std::string interfaceInput;
+
+            getline(std::cin, interfaceInput);
+            system("CLS");
+
+            if (interfaceInput == "1") {
+                DisplayCustomerInterface();
+            }
+            else if (interfaceInput == "2") {
+                DisplayOrderInterface();
+            }
+            else if (interfaceInput == "3") {
+                DisplayInventoryInterface();
+            }
+        }
+};
 
 
-void DisplaySalesInterface()
-{
-    std::cout << "Company Sales Interface\n\n 1 |  Customers\n 2 |  Orders\n\n 3 |  Inventory\n\n";
-    std::string interfaceInput;
+int main() {
+    SalesInterface interface;
+    interface.Run();
 
-    getline(std::cin, interfaceInput);
-    system("CLS");
-
-    if (interfaceInput == "1")
-    {
-        DisplayCustomerInterface();
-    }
-    else if (interfaceInput == "2")
-    {
-        DisplayOrderInterface();
-    }
-    else if (interfaceInput == "3")
-    {
-        DisplayInventoryInterface();
-    }
+    return 0;
 }
 
 

@@ -11,7 +11,7 @@ std::list<Customer> customers;
 
 void DisplayCustomerInterface() 
 {
-    std::cout << "Customer Interface\n\n 1 |  Add New Customer\n 2 |  View Customers\n 3 |  Search Customers\n 4 |  Deactivate Customer \n\n";
+    std::cout << "Client Management Console\n\n 1 |  Add New Customer\n 2 |  View Customer Database\n 3 |  Search Customer Information\n 4 |  Deactivate Customer Profile\n\n";
 
     std::string customerInterfaceInput;
     getline(std::cin, customerInterfaceInput);
@@ -68,6 +68,7 @@ void AddCustomer()
     );
 
     customers.push_back(customer); 
+    customer.CustomerCount++;
     std::cout << "\nAdded Customer '" << customerNameInput << "'"; 
 }
 
@@ -80,8 +81,11 @@ void ViewCustomers()
         return;
     }
 
+    std::cout << "\nCustomer Count | " << CustomerCount << std::endl;
+
     for (auto const& customer : customers) 
     {
+
         std::string IsActiveString = "Inactive";
 
         if (customer.IsActive) 

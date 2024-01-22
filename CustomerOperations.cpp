@@ -81,7 +81,7 @@ void ViewCustomers()
         return;
     }
 
-    std::cout << "\nCustomer Count | " << CustomerCount << std::endl;
+    std::cout << "\nCustomer Count | " << Customer::CustomerCount << std::endl;
 
     for (auto const& customer : customers) 
     {

@@ -9,7 +9,8 @@
 #include "Main.h"
 
 
-void DisplayOrderInterface()
+
+void OrderOperations::DisplayOrderInterface()
 {
     std::cout << "Order Management Hub\n\n\n 1 |  Create New Order\n 2 |  View Existing Orders\n 3 |  Search Order Database\n 4 |  Cancel Pending Order\n\n";
 
@@ -36,222 +37,227 @@ void DisplayOrderInterface()
 }
 
 
-void AddOrder()
-{
-    for (auto const& customer : customers)
+    void OrderOperations::AddOrder()
     {
-        std::string IsActiveString = "Inactive";
-
-        if (customer.IsActive)
+        for (auto const& customer : customers)
         {
-            IsActiveString = "Active";
-        }
+            std::string IsActiveString = "Inactive";
 
-        std::cout << "\n" << "ID      |\t" << customer.ID << "\n";
-        std::cout << "NAME    |\t" << customer.Name << "\n";
-        std::cout << "ADDRESS |\t" << customer.DeliveryAddress << "\n";
-        std::cout << "CONTACT |\t" << customer.Contact << "\n";
-        std::cout << "STATUS  |\t" << IsActiveString << "\n";
-    }
-
-    std::cout << "\nSelect a customer (ID) for the order" << std::endl;
-
-    std::string selectedCustomerInput;
-    std::cin >> selectedCustomerInput;
-
-    for (auto& customer : customers)
-    {
-        if (customer.ID == selectedCustomerInput)
-        {
-
-            if (!customer.IsActive)
+            if (customer.IsActive)
             {
-                std::cout << "\nThis customer is not currently active. Activate this customer to create an order." << std::endl;
-                getchar();
-                return;
+                IsActiveString = "Active";
             }
 
-            std::vector<Stock> stockToOrder;
+            std::cout << "\n" << "ID      |\t" << customer.ID << "\n";
+            std::cout << "NAME    |\t" << customer.Name << "\n";
+            std::cout << "ADDRESS |\t" << customer.DeliveryAddress << "\n";
+            std::cout << "CONTACT |\t" << customer.Contact << "\n";
+            std::cout << "STATUS  |\t" << IsActiveString << "\n";
+        }
 
-            while (true)
+        std::cout << "\nSelect a customer (ID) for the order" << std::endl;
+
+        std::string selectedCustomerInput;
+        std::cin >> selectedCustomerInput;
+
+        for (auto& customer : customers)
+        {
+            if (customer.ID == selectedCustomerInput)
             {
-                int iteration = 1;
 
-                for (auto& stock : stockData)
+                if (!customer.IsActive)
                 {
-                    std::cout << "Stock Index | " << iteration << std::endl;
-                    std::cout << "\n" << stock.ID << std::endl;
-                    std::cout << stock.Name << "\n\n" << std::endl;
-
-                    iteration++;
-                }
-
-                std::cout << "\n\nChoose Stock Index to add to order, or enter '0' to finish order." << std::endl;
-
-                int stockSelectionInput;
-                std::cin >> stockSelectionInput;
-
-                if (stockSelectionInput == 0)
-                {
-                    std::cout << "\nFinished stock order." << std::endl;
-
-                    Order order(
-                        GenerateOrderID(),
-                        stockToOrder
-                    );
-
-                    customer.CustomerOrders.push_back(order);
-
+                    std::cout << "\nThis customer is not currently active. Activate this customer to create an order." << std::endl;
                     getchar();
                     return;
                 }
 
-                Stock selectedStock = stockData[stockSelectionInput - 1];
-                std::cout << "\nChosen stock: '" << selectedStock.Name << "'." << std::endl;
+                std::vector<Stock> stockToOrder;
 
-                int selectedStockQuantity;
-                std::cout << "\n\nEnter stock amount" << std::endl;
-                std::cin >> selectedStockQuantity;
-
-                Stock orderStock(
-                    stockData[stockSelectionInput - 1].ID,
-                    stockData[stockSelectionInput - 1].Name,
-                    stockData[stockSelectionInput - 1].Quantity,
-                    selectedStockQuantity
-                );
-
-                stockToOrder.push_back(orderStock);
-
-                std::cout << "\nAdded " << selectedStockQuantity << " '" << selectedStock.Name << "' to order." << std::endl;
-
-                getchar();
-                getchar();
-            }
-
-            std::cout << "\nAdded Order to '" << customer.Name << "'." << std::endl;
-            getchar();
-            return;
-        }
-    }
-    std::cout << "\nA customer with that ID does not exist." << std::endl;
-    getchar();
-}
-
-void ViewOrders()
-{
-    for (auto& customer : customers)
-    {
-        std::cout << "\n\n" << customer.Name << std::endl;
-
-        for (auto& customerOrder : customer.CustomerOrders)
-        {
-            std::cout << "\n\tOrder " << customerOrder.ID << std::endl;
-
-            for (auto& stock : customerOrder.OrderStock)
-            {
-                std::cout << "\t" << "\t" << stock.ID;
-                std::cout << "\t" << stock.Name;
-                std::cout << "\t" << stock.OrderQuantity << std::endl;
-            }
-            std::cout << "\n\n";
-        }
-    }
-    getchar();
-}
-
-void SearchOrders() {
-
-    if (customers.empty())
-    {
-        std::cout << "\n\tNo customers with orders to Search.";
-        return;
-    }
-
-    std::cout << "\nEnter Customer ID\n";
-
-    std::string customerIDInput;
-    getline(std::cin, customerIDInput);
-
-    for (auto const& customer : customers)
-    {
-        if (customerIDInput == customer.ID)
-        {
-            for (auto& order : customer.CustomerOrders)
-            {
-                std::cout << "\n" << order.ID << std::endl;
-
-                for (auto& stock : order.OrderStock)
+                while (true)
                 {
-                    std::cout << "\t" << "\t" << stock.ID;
-                    std::cout << "\t" << stock.Name;
-                    std::cout << "\t" << stock.OrderQuantity << std::endl;
+                    int iteration = 1;
+
+                    for (auto& stock : stockData)
+                    {
+                        std::cout << "Stock Index | " << iteration << std::endl;
+                        std::cout << "\n" << stock.ID << std::endl;
+                        std::cout << stock.Name << "\n\n" << std::endl;
+
+                        iteration++;
+                    }
+
+                    std::cout << "\n\nChoose Stock Index to add to order, or enter '0' to finish order." << std::endl;
+
+                    int stockSelectionInput;
+                    std::cin >> stockSelectionInput;
+
+                    if (stockSelectionInput == 0)
+                    {
+                        std::cout << "\nFinished stock order." << std::endl;
+
+                        Order order(
+                            GenerateOrderID(),
+                            stockToOrder
+                        );
+
+                        customer.CustomerOrders.push_back(order);
+
+                        getchar();
+                        return;
+                    }
+
+                    Stock selectedStock = stockData[stockSelectionInput - 1];
+                    std::cout << "\nChosen stock: '" << selectedStock.Name << "'." << std::endl;
+
+                    int selectedStockQuantity;
+                    std::cout << "\n\nEnter stock amount" << std::endl;
+                    std::cin >> selectedStockQuantity;
+
+                    Stock orderStock(
+                        stockData[stockSelectionInput - 1].ID,
+                        stockData[stockSelectionInput - 1].Name,
+                        stockData[stockSelectionInput - 1].Quantity,
+                        selectedStockQuantity
+                    );
+
+                    stockToOrder.push_back(orderStock);
+
+                    std::cout << "\nAdded " << selectedStockQuantity << " '" << selectedStock.Name << "' to order." << std::endl;
+
+                    getchar();
+                    getchar();
                 }
-            }
-            return;
-        }
-    }
-    std::cout << "\nNo customer with that ID has been found.";
-}
 
-void CancelOrder()
-{
-    std::cout << "\nEnter the Customer ID for the order to cancel\n";
-
-    std::string CustomerIDInput;
-    getline(std::cin, CustomerIDInput);
-
-    for (auto& customer : customers)
-    {
-        if (customer.ID == CustomerIDInput)
-        {
-            int iteration = 1;
-            for (auto& order : customer.CustomerOrders)
-            {
-                std::cout << "\n\n" << iteration << " | " << order.ID << std::endl;
-
-                for (auto& stock : order.OrderStock)
-                {
-                    std::cout << "\t" << "\t" << stock.ID;
-                    std::cout << "\t" << stock.Name;
-                    std::cout << "\t" << stock.OrderQuantity << std::endl;
-                }
-                iteration++;
-            }
-
-            if (customer.CustomerOrders.empty())
-            {
-                std::cout << "\nNo orders to cancel for this customer." << std::endl;
+                std::cout << "\nAdded Order to '" << customer.Name << "'." << std::endl;
+                getchar();
                 return;
             }
+        }
+        std::cout << "\nA customer with that ID does not exist." << std::endl;
+        getchar();
+    }
 
-            std::cout << "\nEnter the index of the order to cancel." << std::endl;
+    void OrderOperations::ViewOrders()
+    {
+        for (auto& customer : customers)
+        {
+            std::cout << "\n\n" << customer.Name << std::endl;
 
-            int orderIndexToCancel;
-            std::cin >> orderIndexToCancel;
+            for (auto& customerOrder : customer.CustomerOrders)
+            {
+                std::cout << "\n\tOrder " << customerOrder.ID << std::endl;
 
-            std::cout << "\nOrder '" << customer.CustomerOrders[orderIndexToCancel - 1].ID << "' removed.";
-            customer.CustomerOrders.erase(customer.CustomerOrders.begin() + orderIndexToCancel - 1);
+                for (auto& stock : customerOrder.OrderStock)
+                {
+                    std::cout << "\t" << "\t" << stock.ID;
+                    std::cout << "\t" << stock.Name;
+                    std::cout << "\t" << stock.OrderQuantity << std::endl;
+                }
+                std::cout << "\n\n";
+            }
+        }
+        getchar();
+    }
 
-            getchar();
+    void OrderOperations::SearchOrders() {
+
+        if (customers.empty())
+        {
+            std::cout << "\n\tNo customers with orders to Search.";
             return;
         }
+
+        std::cout << "\nEnter Customer ID\n";
+
+        std::string customerIDInput;
+        getline(std::cin, customerIDInput);
+
+        for (auto const& customer : customers)
+        {
+            if (customerIDInput == customer.ID)
+            {
+                for (auto& order : customer.CustomerOrders)
+                {
+                    std::cout << "\n" << order.ID << std::endl;
+
+                    for (auto& stock : order.OrderStock)
+                    {
+                        std::cout << "\t" << "\t" << stock.ID;
+                        std::cout << "\t" << stock.Name;
+                        std::cout << "\t" << stock.OrderQuantity << std::endl;
+                    }
+                }
+                return;
+            }
+        }
+        std::cout << "\nNo customer with that ID has been found.";
     }
-    std::cout << "\nNo customer with that ID has been found.";
-}
 
-std::string GenerateOrderID() {
-    const std::string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    const int sequenceLength = 16;
+    void OrderOperations::CancelOrder()
+    {
+        std::cout << "\nEnter the Customer ID for the order to cancel\n";
 
-    std::random_device rd;
-    std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> distribution(0, characters.size() - 1);
+        std::string CustomerIDInput;
+        getline(std::cin, CustomerIDInput);
 
-    std::string randomSequence;
+        for (auto& customer : customers)
+        {
+            if (customer.ID == CustomerIDInput)
+            {
+                int iteration = 1;
+                for (auto& order : customer.CustomerOrders)
+                {
+                    std::cout << "\n\n" << iteration << " | " << order.ID << std::endl;
 
-    for (int i = 0; i < sequenceLength; ++i) {
-        randomSequence += characters[distribution(generator)];
+                    for (auto& stock : order.OrderStock)
+                    {
+                        std::cout << "\t" << "\t" << stock.ID;
+                        std::cout << "\t" << stock.Name;
+                        std::cout << "\t" << stock.OrderQuantity << std::endl;
+                    }
+                    iteration++;
+                }
+
+                if (customer.CustomerOrders.empty())
+                {
+                    std::cout << "\nNo orders to cancel for this customer." << std::endl;
+                    return;
+                }
+
+                std::cout << "\nEnter the index of the order to cancel." << std::endl;
+
+                int orderIndexToCancel;
+                std::cin >> orderIndexToCancel;
+
+                std::cout << "\nOrder '" << customer.CustomerOrders[orderIndexToCancel - 1].ID << "' removed.";
+                customer.CustomerOrders.erase(customer.CustomerOrders.begin() + orderIndexToCancel - 1);
+
+                getchar();
+                return;
+            }
+        }
+        std::cout << "\nNo customer with that ID has been found.";
     }
 
-    return randomSequence;
-}
+    void OrderOperations::CalculateDiscount()
+    {
+    
+    }
+
+    std::string OrderOperations::GenerateOrderID() {
+        const std::string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        const int sequenceLength = 16;
+
+        std::random_device rd;
+        std::mt19937 generator(rd());
+        std::uniform_int_distribution<int> distribution(0, characters.size() - 1);
+
+        std::string randomSequence;
+
+        for (int i = 0; i < sequenceLength; ++i) {
+            randomSequence += characters[distribution(generator)];
+        }
+
+        return randomSequence;
+    }

@@ -10,12 +10,20 @@
 
 extern std::list<Customer> customers;
 
-void AddCustomer();
-void ViewCustomers();
-void SearchCustomers();
-std::string GenerateCustomerID();
-void ChangeCustomerStatus();
+class CustomerOperations 
+{
+	public:
+		static void DisplayCustomerInterface();
 
-void AddSampleCustomers();
+		static void AddCustomer();
+		static void ViewCustomers();
+		static void SearchCustomers();
+		static std::string GenerateCustomerID();
+		static void ChangeCustomerStatus();
+
+		static void AddSampleCustomers();
+};
+
+
 
 #endif 

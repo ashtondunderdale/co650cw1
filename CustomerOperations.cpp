@@ -10,7 +10,7 @@
 
 std::list<Customer> customers;
 
-void DisplayCustomerInterface() 
+void CustomerOperations::DisplayCustomerInterface()
 {
     std::cout << "Client Management Console\n\n 1 |  Add New Customer\n 2 |  View Customer Database\n 3 |  Search Customer Information\n 4 |  Change Customer Profile Status\n\n";
 
@@ -37,7 +37,7 @@ void DisplayCustomerInterface()
 }
 
 
-void AddCustomer() 
+void CustomerOperations::AddCustomer() 
 {
 
     std::cout << "\nEnter customer Name\n";
@@ -73,7 +73,7 @@ void AddCustomer()
     std::cout << "\nAdded Customer '" << customerNameInput << "'"; 
 }
 
-void ViewCustomers()
+void CustomerOperations::ViewCustomers()
 {
     if (customers.empty())
     {
@@ -107,7 +107,7 @@ void ViewCustomers()
 }
 
 
-void SearchCustomers() {
+void CustomerOperations::SearchCustomers() {
 
     if (customers.empty()) 
     {
@@ -144,7 +144,7 @@ void SearchCustomers() {
 }
 
 
-void ChangeCustomerStatus() 
+void CustomerOperations::ChangeCustomerStatus()
 {
     std::cout << "\nEnter the Customer ID to activate / deactivate\n";
 
@@ -172,7 +172,7 @@ void ChangeCustomerStatus()
 }
 
 
-std::string GenerateCustomerID() 
+std::string CustomerOperations::GenerateCustomerID()
 {
     std::string IDPrefix = "100000";
 
@@ -185,7 +185,7 @@ std::string GenerateCustomerID()
 }
 
 
-void AddSampleCustomers()
+void CustomerOperations::AddSampleCustomers()
 {
     std::vector<std::string> names = { "C++ Industries", "C# Academy", "Python Inc.", 
                                        "Java Enterprises", "Ruby Innovations", "JS Solutions",

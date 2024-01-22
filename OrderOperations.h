@@ -9,11 +9,18 @@
 
 extern std::vector<Stock> stockData; 
 
-void AddOrder();
-void ViewOrders();
-void SearchOrders();
-void CancelOrder();
+class OrderOperations {
 
-std::string GenerateOrderID();
+    public:
+        static void DisplayOrderInterface();
+
+        static void AddOrder();
+        static void ViewOrders();
+        static void SearchOrders();
+        static void CancelOrder();
+
+        static void CalculateDiscount();
+        static std::string GenerateOrderID();
+};
 
 #endif

@@ -32,7 +32,7 @@ std::vector<Stock> stockData =
 };
 
 
-void DisplayInventoryInterface()
+void InventoryOperations::DisplayInventoryInterface()
 {
     std::cout << "Inventory Interface\n\n 1 |  Display Stock Levels\n\n";
     std::string inventoryInterfaceInput;
@@ -46,7 +46,7 @@ void DisplayInventoryInterface()
     }
 }
 
-void DisplayStockLevels()
+void InventoryOperations::DisplayStockLevels()
 {
     std::cout << std::setw(15) << "ID" << std::setw(25) << "Name" << std::setw(15) << "Quantity" << "\n";
     std::cout << std::setfill('-') << std::setw(55) << "" << std::setfill(' ') << "\n";

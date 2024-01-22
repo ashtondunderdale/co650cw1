@@ -17,7 +17,7 @@ class SalesInterface {
 
     private:
         void DisplaySalesInterface() {
-std::cout << "Welcome to the Enterprise Sales Management System\n\n\n 1 |  Customer Relations & Engagement\n 2 |  Order Fulfillment & Processing\n\n 3 |  Inventory Management\n\n";
+            std::cout << "Welcome to the Enterprise Sales Management System\n\n\n 1 |  Customer Relations & Engagement\n 2 |  Order Fulfillment & Processing\n\n 3 |  Inventory Management\n\n";
             std::string interfaceInput;
 
             getline(std::cin, interfaceInput);

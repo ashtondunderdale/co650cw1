@@ -32,26 +32,26 @@ void DisplayOrderInterface()
     {
         CancelOrder();
     }
-    CleanConsole(); 
+    CleanConsole();
 }
 
 
-void AddOrder() 
+void AddOrder()
 {
-    for (auto const& customer : customers) 
+    for (auto const& customer : customers)
     {
-        std::string IsActiveString = "Inactive"; 
+        std::string IsActiveString = "Inactive";
 
-        if (customer.IsActive) 
+        if (customer.IsActive)
         {
-            IsActiveString = "Active"; 
+            IsActiveString = "Active";
         }
 
-        std::cout << "\n" << "ID      |\t" << customer.ID << "\n"; 
-        std::cout << "NAME    |\t" << customer.Name << "\n"; 
-        std::cout << "ADDRESS |\t" << customer.DeliveryAddress << "\n"; 
-        std::cout << "CONTACT |\t" << customer.Contact << "\n"; 
-        std::cout << "STATUS  |\t" << IsActiveString << "\n"; 
+        std::cout << "\n" << "ID      |\t" << customer.ID << "\n";
+        std::cout << "NAME    |\t" << customer.Name << "\n";
+        std::cout << "ADDRESS |\t" << customer.DeliveryAddress << "\n";
+        std::cout << "CONTACT |\t" << customer.Contact << "\n";
+        std::cout << "STATUS  |\t" << IsActiveString << "\n";
     }
 
     std::cout << "\nSelect a customer (ID) for the order" << std::endl;
@@ -59,25 +59,25 @@ void AddOrder()
     std::string selectedCustomerInput;
     std::cin >> selectedCustomerInput;
 
-    for (auto& customer : customers) 
+    for (auto& customer : customers)
     {
-        if (customer.ID == selectedCustomerInput) 
+        if (customer.ID == selectedCustomerInput)
         {
 
-            if (!customer.IsActive) 
+            if (!customer.IsActive)
             {
                 std::cout << "\nThis customer is not currently active. Activate this customer to create an order." << std::endl;
                 getchar();
                 return;
             }
 
-            std::vector<Stock> stockToOrder; 
+            std::vector<Stock> stockToOrder;
 
-            while (true) 
+            while (true)
             {
                 int iteration = 1;
 
-                for (auto& stock : stockData) 
+                for (auto& stock : stockData)
                 {
                     std::cout << "Stock Index | " << iteration << std::endl;
                     std::cout << "\n" << stock.ID << std::endl;
@@ -89,15 +89,15 @@ void AddOrder()
                 std::cout << "\n\nChoose Stock Index to add to order, or enter '0' to finish order." << std::endl;
 
                 int stockSelectionInput;
-                std::cin >> stockSelectionInput; 
+                std::cin >> stockSelectionInput;
 
-                if (stockSelectionInput == 0) 
+                if (stockSelectionInput == 0)
                 {
                     std::cout << "\nFinished stock order." << std::endl;
 
                     Order order(
                         GenerateOrderID(),
-                        stockToOrder 
+                        stockToOrder
                     );
 
                     customer.CustomerOrders.push_back(order);
@@ -106,7 +106,7 @@ void AddOrder()
                     return;
                 }
 
-                Stock selectedStock = stockData[stockSelectionInput - 1]; 
+                Stock selectedStock = stockData[stockSelectionInput - 1];
                 std::cout << "\nChosen stock: '" << selectedStock.Name << "'." << std::endl;
 
                 int selectedStockQuantity;
@@ -125,7 +125,7 @@ void AddOrder()
                 std::cout << "\nAdded " << selectedStockQuantity << " '" << selectedStock.Name << "' to order." << std::endl;
 
                 getchar();
-                getchar(); 
+                getchar();
             }
 
             std::cout << "\nAdded Order to '" << customer.Name << "'." << std::endl;
@@ -147,7 +147,7 @@ void ViewOrders()
         {
             std::cout << "\n\tOrder " << customerOrder.ID << std::endl;
 
-            for (auto& stock : customerOrder.OrderStock) 
+            for (auto& stock : customerOrder.OrderStock)
             {
                 std::cout << "\t" << "\t" << stock.ID;
                 std::cout << "\t" << stock.Name;
@@ -180,7 +180,7 @@ void SearchOrders() {
             {
                 std::cout << "\n" << order.ID << std::endl;
 
-                for (auto& stock : order.OrderStock) 
+                for (auto& stock : order.OrderStock)
                 {
                     std::cout << "\t" << "\t" << stock.ID;
                     std::cout << "\t" << stock.Name;
@@ -202,17 +202,17 @@ void CancelOrder()
 
     for (auto& customer : customers)
     {
-        if (customer.ID == CustomerIDInput) 
+        if (customer.ID == CustomerIDInput)
         {
             int iteration = 1;
             for (auto& order : customer.CustomerOrders)
             {
                 std::cout << "\n\n" << iteration << " | " << order.ID << std::endl;
 
-                for (auto& stock : order.OrderStock) 
+                for (auto& stock : order.OrderStock)
                 {
-                    std::cout << "\t" << "\t" << stock.ID; 
-                    std::cout << "\t" << stock.Name; 
+                    std::cout << "\t" << "\t" << stock.ID;
+                    std::cout << "\t" << stock.Name;
                     std::cout << "\t" << stock.OrderQuantity << std::endl;
                 }
                 iteration++;

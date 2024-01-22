@@ -6,12 +6,13 @@
 #include "CustomerOperations.h"
 #include "Customer.h"
 #include "Main.h"
+#include <iomanip>
 
 std::list<Customer> customers;
 
 void DisplayCustomerInterface() 
 {
-    std::cout << "Client Management Console\n\n 1 |  Add New Customer\n 2 |  View Customer Database\n 3 |  Search Customer Information\n 4 |  Deactivate Customer Profile\n\n";
+    std::cout << "Client Management Console\n\n 1 |  Add New Customer\n 2 |  View Customer Database\n 3 |  Search Customer Information\n 4 |  Change Customer Profile Status\n\n";
 
     std::string customerInterfaceInput;
     getline(std::cin, customerInterfaceInput);
@@ -30,7 +31,7 @@ void DisplayCustomerInterface()
     }
     else if (customerInterfaceInput == "4")
     {
-        DeactivateCustomer();
+        ChangeCustomerStatus();
     }
     CleanConsole(); 
 }
@@ -72,32 +73,36 @@ void AddCustomer()
     std::cout << "\nAdded Customer '" << customerNameInput << "'"; 
 }
 
-void ViewCustomers() 
+void ViewCustomers()
 {
-
-    if (customers.empty()) 
+    if (customers.empty())
     {
-        std::cout << "\n\tNo customers to Display.";
+        std::cout << "\n\tNo customers to display.";
         return;
     }
 
-    std::cout << "\nCustomer Count | " << Customer::CustomerCount << std::endl;
+    const int idWidth = 10;
+    const int nameWidth = 20;
+    const int addressWidth = 30;
+    const int contactWidth = 15;
+    const int statusWidth = 10;
 
-    for (auto const& customer : customers) 
+    std::cout << std::setw(idWidth) << "ID"
+        << std::setw(nameWidth) << "NAME"
+        << std::setw(addressWidth) << "ADDRESS"
+        << std::setw(contactWidth) << "CONTACT"
+        << std::setw(statusWidth) << "STATUS" << "\n";
+    std::cout << std::setfill('-') << std::setw(idWidth + nameWidth + addressWidth + contactWidth + statusWidth) << "" << std::setfill(' ') << "\n";
+
+    for (const auto& customer : customers)
     {
+        std::string IsActiveString = customer.IsActive ? "Active" : "Inactive";
 
-        std::string IsActiveString = "Inactive";
-
-        if (customer.IsActive) 
-        {
-            IsActiveString = "Active";
-        }
-
-        std::cout << "\n" << "ID      |\t" << customer.ID << "\n";
-        std::cout << "NAME    |\t" << customer.Name << "\n";
-        std::cout << "ADDRESS |\t" << customer.DeliveryAddress << "\n";
-        std::cout << "CONTACT |\t" << customer.Contact << "\n";
-        std::cout << "STATUS  |\t" << IsActiveString << "\n";
+        std::cout << std::setw(idWidth) << customer.ID
+            << std::setw(nameWidth) << customer.Name
+            << std::setw(addressWidth) << customer.DeliveryAddress
+            << std::setw(contactWidth) << customer.Contact
+            << std::setw(statusWidth) << IsActiveString << "\n";
     }
 }
 
@@ -139,20 +144,28 @@ void SearchCustomers() {
 }
 
 
-void DeactivateCustomer() 
+void ChangeCustomerStatus() 
 {
-    std::cout << "\nEnter the Customer ID to deactivate\n";
+    std::cout << "\nEnter the Customer ID to activate / deactivate\n";
 
-    std::string deactivateCustomerIDInput;
-    getline(std::cin, deactivateCustomerIDInput);
+    std::string changeStatusCustomerIDInput;
+    getline(std::cin, changeStatusCustomerIDInput);
 
     for (auto& customer : customers)
     {
-        if (deactivateCustomerIDInput == customer.ID)
+        if (changeStatusCustomerIDInput == customer.ID)
         {
-            customer.IsActive = false;
+            customer.IsActive = !customer.IsActive;
 
-            std::cout << "\nDeactivated customer: '" << customer.Name << "'";
+            if (customer.IsActive == true)
+            {
+                std::cout << "\nActivated customer: '" << customer.Name << "'";
+            }
+            else 
+            {
+                std::cout << "\nDeactivated customer: '" << customer.Name << "'";
+            }
+
             return;
         }
     }
@@ -175,9 +188,17 @@ std::string GenerateCustomerID()
 
 void AddSampleCustomers()
 {
-    std::vector<std::string> names = { "C++ Industries", "C# Academy", "Python Inc." };
-    std::vector<std::string> addresses = { "BB11LOJ", "BB24UJK", "BB09LAY" };
-    std::vector<std::string> contacts = { "07929774839", "08172984429", "07839418273" };
+    std::vector<std::string> names = { "C++ Industries", "C# Academy", "Python Inc.", 
+                                       "Java Enterprises", "Ruby Innovations", "JS Solutions",
+                                       "Swift Systems", "Go Tech Corp", "Rust Innovate" };
+
+    std::vector<std::string> addresses = { "BB11LOJ", "BB24UJK", "BB09LAY", 
+                                           "BB18OPQ", "BB23XYZ", "BB05ABC",
+                                           "BB15LMN", "BB07DEF", "BB02GHI" };
+
+    std::vector<std::string> contacts = { "07929774839", "08172984429", "07839418273",
+                                          "07654321098", "07891234567", "07654321098",
+                                          "07567890123", "07456789012", "07345678901" };
 
     for (size_t i = 0; i < names.size(); ++i) {
         Customer customer(

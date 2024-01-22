@@ -14,7 +14,7 @@ void AddCustomer();
 void ViewCustomers();
 void SearchCustomers();
 std::string GenerateCustomerID();
-void DeactivateCustomer();
+void ChangeCustomerStatus();
 
 void AddSampleCustomers();
 

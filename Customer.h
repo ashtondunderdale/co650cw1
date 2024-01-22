@@ -27,7 +27,8 @@ class TradeCustomer : public Customer
 {
     public:
         std::string CompanyName;
-        int CreditLimit = 5000;
+        int Credit = 5000;
+        static const int MaxCreditLimit = 10000;
         std::string SalesRepresentative;
 
         TradeCustomer(std::string id, std::string name, std::string deliveryAddress, std::string contact,

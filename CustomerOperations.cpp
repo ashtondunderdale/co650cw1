@@ -165,7 +165,6 @@ void ChangeCustomerStatus()
             {
                 std::cout << "\nDeactivated customer: '" << customer.Name << "'";
             }
-
             return;
         }
     }

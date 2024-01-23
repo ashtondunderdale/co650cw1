@@ -117,12 +117,13 @@ void OrderOperations::DisplayOrderInterface()
                             }
                         }
 
+
                         Order order(
                             GenerateOrderID(),
                             stockToOrder
                         );
-
-                        customer.CustomerOrders.push_back(order);
+                       
+                        customer.PlaceOrder(order);
 
                         getchar();
                         return;

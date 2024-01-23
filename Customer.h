@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <list>
+#include <vector>
 #include "Order.h"
 
 #ifndef CUSTOMER_H
@@ -20,6 +20,8 @@ class Customer
         std::vector<Order> CustomerOrders;
 
         Customer(std::string id, std::string name, std::string deliveryAddress, std::string contact);
+
+        virtual void PlaceOrder(const Order& order);
 };
 
 
@@ -33,6 +35,8 @@ class TradeCustomer : public Customer
 
         TradeCustomer(std::string id, std::string name, std::string deliveryAddress, std::string contact,
             std::string businessType, std::string salesRepresentative);
+
+        void PlaceOrder(const Order& order) override;
 };
 
 
@@ -43,6 +47,8 @@ class RetailCustomer : public Customer
         double DiscountRate = 10;
 
         RetailCustomer(std::string id, std::string name, std::string deliveryAddress, std::string contact);
+
+        void PlaceOrder(const Order& order) override;
 };
 
 #endif

@@ -277,8 +277,7 @@ void OrderOperations::DisplayOrderInterface()
     {
             double discount = fixedAmount;
 
-            double orderAmount = 2;
-            double discountedAmount = orderAmount - discount;
+            double discountedAmount = (stockToOrder.size()) * 10 - discount;
 
             std::cout << "\nApplying a fixed amount discount of $" << discount << ".\n";
             std::cout << "Order amount after discount: $" << discountedAmount << ".\n";

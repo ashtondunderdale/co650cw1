@@ -6,12 +6,12 @@
 
 class InventoryOperations 
 {
-	public:
+	private:
 		static void DisplayInventoryInterface();
 
 		static void DisplayStockLevels();
 
-		// consider making these operation classes friends with the sales interface class
+	friend class SalesInterface;
 };
 
 #endif

@@ -11,9 +11,7 @@ extern std::vector<Stock> stockData;
 
 class OrderOperations {
 
-    public:
-        static void DisplayOrderInterface();
-
+    private:
         static void AddOrder();
         static void ViewOrders();
         static void SearchOrders();
@@ -21,6 +19,10 @@ class OrderOperations {
 
         static void CalculateDiscount();
         static std::string GenerateOrderID();
+
+        static void DisplayOrderInterface();
+
+    friend class SalesInterface;
 };
 
 #endif

@@ -12,9 +12,7 @@ extern std::list<Customer> customers;
 
 class CustomerOperations 
 {
-	public:
-		static void DisplayCustomerInterface();
-
+	private:
 		static void AddCustomer();
 		static void ViewCustomers();
 		static void SearchCustomers();
@@ -22,6 +20,10 @@ class CustomerOperations
 		static void ChangeCustomerStatus();
 
 		static void AddSampleCustomers();
+
+		static void DisplayCustomerInterface();
+
+	friend class SalesInterface;
 };
 
 

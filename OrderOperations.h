@@ -17,7 +17,9 @@ class OrderOperations {
         static void SearchOrders();
         static void CancelOrder();
 
-        static void CalculateDiscount();
+        static double CalculateDiscount(std::vector<Stock> stockToOrder);
+        static double CalculateDiscount(double fixedAmount, std::vector<Stock> stockToOrder);
+
         static std::string GenerateOrderID();
 
         static void DisplayOrderInterface();

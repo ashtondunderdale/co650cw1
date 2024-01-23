@@ -98,7 +98,7 @@ void OrderOperations::DisplayOrderInterface()
 
                         if (stockToOrder.size() > 4) 
                         {   
-                            std::cout << "\n\nDiscount Applicable for customer" << "\n\nEnter 1 to apply standard discount, or 2 to apply fixed discount of 10." << std::endl;
+                            std::cout << "Discount Applicable for customer" << "\n\nEnter 1 to apply standard discount, or 2 to apply fixed discount of 10." << std::endl;
 
                             std::string discountInput;
                             std::cin >> discountInput;
@@ -109,7 +109,8 @@ void OrderOperations::DisplayOrderInterface()
                             }
                             else if (discountInput == "2")
                             {
-                                CalculateDiscount(10, stockToOrder); 
+                                CalculateDiscount(10, stockToOrder);
+
                             }
                             else 
                             {
@@ -268,8 +269,6 @@ void OrderOperations::DisplayOrderInterface()
             double discount = static_cast<double>(stockToOrder.size()) * 100.0 / 5.0;
             discount = std::min(discount, maxDiscountPercentage);
 
-            std::cout << "\nApplying discount of $" << discount << ".\n";
-
             return discount;
     }
 
@@ -280,7 +279,7 @@ void OrderOperations::DisplayOrderInterface()
             double orderAmount = 2;
             double discountedAmount = orderAmount - discount;
 
-            std::cout << "\nApplying a fixed amount discount of $" << discount << ".\n";
+            std::cout << "Applying a fixed amount discount of $" << discount << ".\n";
             std::cout << "Order amount after discount: $" << discountedAmount << ".\n";
 
             return discountedAmount;

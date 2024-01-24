@@ -17,7 +17,15 @@ public:
     }
 
     bool DisplaySalesInterface() {
-        std::cout << "Welcome to the Enterprise Sales Management System\n\n\n 1 |  Customer Relations & Engagement\n 2 |  Order Fulfillment & Processing\n\n 3 |  Inventory Management\n\n 4 |  Manage Accounts \n\n\n\n 9 |  Exit Program\n\n";
+
+        std::cout << "Enterprise Sales Management System\n";
+        std::cout << "____________________________________________" << std::endl;
+        std::cout << " 1 |  Customer Relations & Engagement\n";
+        std::cout << " 2 |  Order Fulfillment & Processing\n";
+        std::cout << " 3 |  Manage Inventory\n";
+        std::cout << " 4 |  Manage Financial Accounts\n   |\n";
+        std::cout << " 9 |  Exit Program\n\n";
+
         std::string interfaceInput;
 
         getline(std::cin, interfaceInput);

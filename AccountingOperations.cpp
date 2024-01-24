@@ -5,9 +5,10 @@
 #include "AccountingOperations.h"
 #include <list>
 #include "Account.h"
+#include <iomanip>
 
 
-std::list<Account> accounts;
+std::list<Account*> accounts;
 
 void AccountingOperations::DisplayAccountingInterface()
 {
@@ -37,15 +38,22 @@ void AccountingOperations::AddAccount()
     double creditValue;
     std::cin >> creditValue;
 
-    Account account(
-        debitValue,
-        creditValue
-    );
+    Account* accountPtr = new Account(debitValue, creditValue);
 
-    accounts.push_back(account);
+    accounts.push_back(accountPtr);
+
+    std::cout << "\n\nAdded account.";
+    std::cin.get();
 }
 
 void AccountingOperations::ViewAccounts()
 {
+    for (auto& account : accounts) 
+    {
+        std::cout << "Debit: ";
+        std::cout << account->Debit;
 
+        std::cout << "\tCredit: ";
+        std::cout << account->Credit << std::endl;
+    }
 }

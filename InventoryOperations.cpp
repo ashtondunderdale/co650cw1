@@ -38,16 +38,18 @@ void InventoryOperations::DisplayInventoryInterface()
     std::string inventoryInterfaceInput;
 
     getline(std::cin, inventoryInterfaceInput);
-    system("CLS");
 
     if (inventoryInterfaceInput == "1")
     {
         DisplayStockLevels();
     }
+    CleanConsole();
 }
 
 void InventoryOperations::DisplayStockLevels()
 {
+    system("CLS");
+
     std::cout << std::setw(15) << "ID" << std::setw(25) << "Name" << std::setw(15) << "Quantity" << "\n";
     std::cout << std::setfill('-') << std::setw(55) << "" << std::setfill(' ') << "\n";
 
@@ -57,6 +59,4 @@ void InventoryOperations::DisplayStockLevels()
         std::cout << std::setw(25) << stock.Name;
         std::cout << std::setw(15) << stock.Quantity << "\n";
     }
-
-    CleanConsole();
 }

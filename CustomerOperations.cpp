@@ -12,7 +12,7 @@ std::list<Customer> customers;
 
 void CustomerOperations::DisplayCustomerInterface()
 {
-    std::cout << "Client Management Console\n\n 1 |  Add New Customer\n 2 |  View Customer Database\n 3 |  Search Customer Information\n 4 |  Change Customer Profile Status\n\n";
+    std::cout << "Client Management Interface\n\n 1 |  Add New Customer\n 2 |  View Customer Database\n 3 |  Search Customer Information\n 4 |  Change Customer Profile Status\n\n";
 
     std::string customerInterfaceInput;
     getline(std::cin, customerInterfaceInput);

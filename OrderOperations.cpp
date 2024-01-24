@@ -12,7 +12,7 @@
 
 void OrderOperations::DisplayOrderInterface()
 {
-    std::cout << "Order Management Hub\n\n\n 1 |  Create New Order\n 2 |  View Existing Orders\n 3 |  Search Order Database\n 4 |  Cancel Pending Order\n\n";
+    std::cout << "Order Management Interface\n\n 1 |  Create New Order\n 2 |  View Existing Orders\n 3 |  Search Order Database\n 4 |  Cancel Pending Order\n\n";
 
     std::string orderInterfaceInput;
     getline(std::cin, orderInterfaceInput);
@@ -68,7 +68,7 @@ void OrderOperations::DisplayOrderInterface()
                 if (!customer.IsActive)
                 {
                     std::cout << "\nThis customer is not currently active. Activate this customer to create an order." << std::endl;
-                    getchar();
+                    std::cin.get(); 
                     return;
                 }
 
@@ -125,7 +125,7 @@ void OrderOperations::DisplayOrderInterface()
                        
                         customer.PlaceOrder(order);
 
-                        getchar();
+                        std::cin.get();
                         return;
                     }
 
@@ -147,17 +147,17 @@ void OrderOperations::DisplayOrderInterface()
 
                     std::cout << "\nAdded " << selectedStockQuantity << " '" << selectedStock.Name << "' to order." << std::endl;
 
-                    getchar();
-                    getchar();
+                    std::cin.get();
+                    std::cin.get();
                 }
 
                 std::cout << "\nAdded Order to '" << customer.Name << "'." << std::endl;
-                getchar();
+                std::cin.get();
                 return;
             }
         }
         std::cout << "\nA customer with that ID does not exist." << std::endl;
-        getchar();
+        std::cin.get();
     }
 
     void OrderOperations::ViewOrders()
@@ -179,7 +179,7 @@ void OrderOperations::DisplayOrderInterface()
                 std::cout << "\n\n";
             }
         }
-        getchar();
+        std::cin.get();
     }
 
     void OrderOperations::SearchOrders() {
@@ -255,7 +255,8 @@ void OrderOperations::DisplayOrderInterface()
                 std::cout << "\nOrder '" << customer.CustomerOrders[orderIndexToCancel - 1].ID << "' removed.";
                 customer.CustomerOrders.erase(customer.CustomerOrders.begin() + orderIndexToCancel - 1);
 
-                getchar();
+                std::cin.get();
+
                 return;
             }
         }

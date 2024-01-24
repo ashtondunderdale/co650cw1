@@ -26,6 +26,4 @@ class CustomerOperations
 	friend class SalesInterface;
 };
 
-
-
 #endif 

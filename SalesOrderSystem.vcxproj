@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AccountingOperations.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="CustomerOperations.cpp" />
     <ClCompile Include="InventoryOperations.cpp" />
@@ -136,6 +138,8 @@
     <ClCompile Include="Stock.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountingOperations.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="CustomerOperations.h" />
     <ClInclude Include="InventoryOperations.h" />
